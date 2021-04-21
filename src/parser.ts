@@ -83,7 +83,7 @@ export class _Annotation {
         throw Error("Error")
     }
 
-    public writeAnnotationObject(cryptoInterface : CryptoInterface) : number[] {
+    public writeAnnotationObject(cryptoInterface : CryptoInterface, pdfVersion:PDFVersion) : number[] {
         throw Error("Error")
     }
 

@@ -2,6 +2,7 @@ import { MarkupAnnotation, MarkupAnnotationObj } from './annotation_types';
 import { CryptoInterface } from '../parser';
 import { ErrorList, InvalidRectError, InvalidAnnotationTypeError, InvalidQuadPointError } from './annotation_errors';
 import { WriterUtil } from '../writer-util';
+import { PDFVersion } from '../util';
 
 export interface TextMarkupAnnotation extends MarkupAnnotation {
     quadPoints: number[] // specifies how the annotation goes arround the text
@@ -10,8 +11,8 @@ export interface TextMarkupAnnotation extends MarkupAnnotation {
 export class TextMarkupAnnotationObj extends MarkupAnnotationObj implements TextMarkupAnnotation {
     quadPoints: number[] = []
 
-    public writeAnnotationObject(cryptoInterface : CryptoInterface) : number[] {
-        let ret : number[] = super.writeAnnotationObject(cryptoInterface)
+    public writeAnnotationObject(cryptoInterface : CryptoInterface, pdfVersion:PDFVersion) : number[] {
+        let ret : number[] = super.writeAnnotationObject(cryptoInterface, pdfVersion)
 
         ret = ret.concat(WriterUtil.QUADPOINTS)
         ret.push(WriterUtil.SPACE)

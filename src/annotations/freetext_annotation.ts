@@ -2,7 +2,7 @@ import { MarkupAnnotation, MarkupAnnotationObj, LineEndingStyle } from './annota
 import { ErrorList, InvalidAnnotationTypeError } from './annotation_errors';
 import { CryptoInterface } from '../parser';
 import { WriterUtil } from '../writer-util';
-import { Util } from '../util'
+import { Util, PDFVersion } from '../util'
 
 export enum TextJustification {
     Left, Centered, Right
@@ -65,8 +65,8 @@ export class FreeTextAnnotationObj extends MarkupAnnotationObj implements FreeTe
         }
     }
 
-    public writeAnnotationObject(cryptoInterface : CryptoInterface) : number[] {
-        let ret : number[] = super.writeAnnotationObject(cryptoInterface)
+    public writeAnnotationObject(cryptoInterface : CryptoInterface, pdfVersion: PDFVersion): number[]{
+        let ret : number[] = super.writeAnnotationObject(cryptoInterface, pdfVersion)
 
         ret.push(WriterUtil.SPACE)
         ret = ret.concat(WriterUtil.DEFAULT_APPEARANCE)

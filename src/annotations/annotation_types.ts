@@ -104,7 +104,7 @@ export class BaseAnnotationObj implements BaseAnnotation {
         return ret
     }
 
-    public writeAnnotationObject(cryptoInterface : CryptoInterface) : number[] {
+    public writeAnnotationObject(cryptoInterface : CryptoInterface, pdfVersion: PDFVersion) : number[] {
         let ret : number[] = []
 
         ret.push(WriterUtil.SPACE)
@@ -393,8 +393,8 @@ export class MarkupAnnotationObj extends BaseAnnotationObj implements MarkupAnno
         super()
     }
 
-    public writeAnnotationObject(cryptoInterface : CryptoInterface) : number[] {
-        let ret : number[] = super.writeAnnotationObject(cryptoInterface)
+    public writeAnnotationObject(cryptoInterface : CryptoInterface,pdfVersion:PDFVersion) : number[] {
+        let ret : number[] = super.writeAnnotationObject(cryptoInterface, pdfVersion)
 
         ret = ret.concat(WriterUtil.AUTHOR)
         ret.push(WriterUtil.SPACE)

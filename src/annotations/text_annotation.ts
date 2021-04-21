@@ -2,7 +2,7 @@ import { MarkupAnnotation, MarkupAnnotationObj } from './annotation_types';
 import { CryptoInterface } from '../parser';
 import { ErrorList, InvalidAnnotationTypeError, InvalidStateError } from './annotation_errors';
 import { WriterUtil } from '../writer-util';
-import { Util } from '../util'
+import { Util, PDFVersion } from '../util'
 
 export enum AnnotationIcon {
     Comment, Key, Note, Help, NewParagraph, Paragraph, Insert
@@ -90,8 +90,8 @@ export class TextAnnotationObj extends MarkupAnnotationObj implements TextAnnota
     }
 
 
-    public writeAnnotationObject(cryptoInterface : CryptoInterface) : number[] {
-        let ret : number[] = super.writeAnnotationObject(cryptoInterface)
+    public writeAnnotationObject(cryptoInterface : CryptoInterface, pdfVersion: PDFVersion) : number[] {
+        let ret : number[] = super.writeAnnotationObject(cryptoInterface, pdfVersion)
 
         if (this.open) {
             ret = ret.concat(WriterUtil.OPEN)

@@ -172,7 +172,7 @@ export class Writer {
 
         let ret : number[] = annot.writeAnnotationPreamble()
 
-        ret = ret.concat(annot.writeAnnotationObject(this.cryptoInterface))
+        ret = ret.concat(annot.writeAnnotationObject(this.cryptoInterface,this.parser.getPDFVersion()))
         ret = ret.concat(annot.writeAnnotationPostamble())
 
         return { ptr: annot.object_id!, data: ret }

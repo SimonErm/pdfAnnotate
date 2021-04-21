@@ -2,6 +2,7 @@ import { MarkupAnnotation, MarkupAnnotationObj, Color, LineEndingStyle } from '.
 import { ErrorList, InvalidAnnotationTypeError, InvalidVerticesError } from './annotation_errors';
 import { CryptoInterface } from '../parser';
 import { WriterUtil } from '../writer-util';
+import { PDFVersion } from '../util';
 
 export enum PolygonPolyLineIntent {
     PolygonCloud, PolyLineDimension, PolygonDimension
@@ -23,8 +24,8 @@ export class PolygonPolyLineAnnotationObj extends MarkupAnnotationObj implements
         super()
     }
 
-    public writeAnnotationObject(cryptoInterface : CryptoInterface) : number[] {
-        let ret : number[] = super.writeAnnotationObject(cryptoInterface)
+    public writeAnnotationObject(cryptoInterface : CryptoInterface, pdfVersion:PDFVersion) : number[] {
+        let ret : number[] = super.writeAnnotationObject(cryptoInterface, pdfVersion)
 
         if (this.fill) {
             let fill : Color = this.fill
@@ -87,8 +88,8 @@ export class PolyLineAnnotationObj extends PolygonPolyLineAnnotationObj implemen
         this.type_encoded = [47, 80, 111, 108, 121, 76, 105, 110, 101] // '/PolyLine
     }
 
-    public writeAnnotationObject(cryptoInterface : CryptoInterface) : number[] {
-        let ret : number[] = super.writeAnnotationObject(cryptoInterface)
+    public writeAnnotationObject(cryptoInterface : CryptoInterface, pdfVersion:PDFVersion) : number[] {
+        let ret : number[] = super.writeAnnotationObject(cryptoInterface, pdfVersion)
 
         if (this.lineEndingStyles && this.lineEndingStyles.length >= 2) {
             ret = ret.concat(WriterUtil.LINE_ENDING)

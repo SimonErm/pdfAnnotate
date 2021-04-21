@@ -2,6 +2,7 @@ import { MarkupAnnotation, MarkupAnnotationObj, Color } from './annotation_types
 import { ErrorList, InvalidAnnotationTypeError } from './annotation_errors';
 import { CryptoInterface } from '../parser';
 import { WriterUtil } from '../writer-util';
+import { PDFVersion } from '../util';
 
 export interface CircleSquareAnnotation extends MarkupAnnotation {
     borderStyle?: any // /BS
@@ -18,8 +19,8 @@ export class CircleSquareAnnotationObj extends MarkupAnnotationObj implements Ci
         super()
     }
 
-    public writeAnnotationObject(cryptoInterface : CryptoInterface) : number[] {
-        let ret : number[] = super.writeAnnotationObject(cryptoInterface)
+    public writeAnnotationObject(cryptoInterface : CryptoInterface, pdfVersion: PDFVersion) : number[] {
+        let ret : number[] = super.writeAnnotationObject(cryptoInterface, pdfVersion)
 
         if (this.fill) {
             let fill : Color = this.fill

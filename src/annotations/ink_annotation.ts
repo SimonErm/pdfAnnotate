@@ -2,6 +2,7 @@ import { MarkupAnnotation, MarkupAnnotationObj } from './annotation_types';
 import { ErrorList, InvalidAnnotationTypeError } from './annotation_errors';
 import { CryptoInterface } from '../parser';
 import { WriterUtil } from '../writer-util';
+import { PDFVersion } from '../util';
 
 export interface InkAnnotation extends MarkupAnnotation {
     inkList: number[][] // /InkList
@@ -17,8 +18,8 @@ export class InkAnnotationObj extends MarkupAnnotationObj implements InkAnnotati
         this.type_encoded = [47, 73, 110, 107] // = '/Ink'
     }
 
-    public writeAnnotationObject(cryptoInterface : CryptoInterface) : number[] {
-        let ret : number[] = super.writeAnnotationObject(cryptoInterface)
+    public writeAnnotationObject(cryptoInterface : CryptoInterface, pdfVersion:PDFVersion) : number[] {
+        let ret : number[] = super.writeAnnotationObject(cryptoInterface, pdfVersion)
 
         if (this.inkList && this.inkList.length > 0) {
             ret = ret.concat(WriterUtil.INKLIST)
