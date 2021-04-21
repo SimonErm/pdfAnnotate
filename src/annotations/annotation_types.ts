@@ -1,5 +1,5 @@
 import { Page, ReferencePointer, CryptoInterface } from '../parser';
-import { Util } from '../util';
+import { Util, PDFVersion } from '../util';
 import { ErrorList, InvalidOpacityError, InvalidRectError, InvalidDateError, InvalidReferencePointerError, ColorOutOfRangeError, InvalidColorError, InvalidIDError } from './annotation_errors';
 import { WriterUtil } from '../writer-util';
 
@@ -159,6 +159,20 @@ export class BaseAnnotationObj implements BaseAnnotation {
             ret = ret.concat(WriterUtil.writeNumberArray([this.border.horizontal_corner_radius || 0, this.border.vertical_corner_radius || 0, this.border.border_width || 1]))
             ret.push(WriterUtil.SPACE)
         }
+
+	if (this.border && pdfVersion.minor>=4){ 
+	    ret.push(WriterUtil.SPACE)
+	    ret = ret.concat(WriterUtil.BS)
+	    ret.push(WriterUtil.SPACE)
+	    ret = ret.concat(WriterUtil.DICT_START)
+	    ret.push(WriterUtil.SPACE)
+            ret = ret.concat(WriterUtil.WIDTH)
+	    ret.push(WriterUtil.SPACE)	
+	    ret = ret.concat(Util.convertNumberToCharArray(this.border.border_width || 1))
+	    ret.push(WriterUtil.SPACE)
+	    ret = ret.concat(WriterUtil.DICT_END)
+	    ret.push(WriterUtil.SPACE)
+	}
 
         if (this.color) {
             if (this.color.r > 1) this.color.r /= 255
