@@ -39,7 +39,7 @@ export class WriterUtil {
     public static PAGE_REFERENCE: number[] = [47, 80] // = '/P'
     public static DEFAULT_APPEARANCE: number[] = [47, 68, 65] // = '/DA'
     public static INKLIST: number[] = [47, 73, 110, 107, 76, 105, 115, 116] // = '/InkList'
-
+    public static WIDTH: number[] = [47, 87]
     public static RC: number[] = [47, 82, 67] // = '/RC'
     public static CREATION_DATE: number[] = [47, 67, 114, 101, 97, 116, 105, 111, 110, 68, 97, 116, 101] // = '/CreationDate'
     public static SUBJ: number[] = [47, 83, 117, 98, 106] // = '/Subj'
