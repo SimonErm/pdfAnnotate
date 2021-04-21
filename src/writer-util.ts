@@ -35,6 +35,7 @@ export class WriterUtil {
     public static STATEMODEL: number[] = [47, 83, 116, 97, 116, 101, 77, 111, 100, 101, 108] // = '/StateModel'
     public static OPACITY: number[] = [47, 67, 65] // = '/CA'
     public static BORDER: number[] = [47, 66, 111, 114, 100, 101, 114] // = '/Border'
+    public static BS: number [] = [47, 66, 83]
     public static PAGE_REFERENCE: number[] = [47, 80] // = '/P'
     public static DEFAULT_APPEARANCE: number[] = [47, 68, 65] // = '/DA'
     public static INKLIST: number[] = [47, 73, 110, 107, 76, 105, 115, 116] // = '/InkList'
